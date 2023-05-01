@@ -6,6 +6,7 @@ from figures.figures import Figures
 from record.record import Record
 from records.records import Records
 from typing import Type
+from measures import Measures as ms
 
 
 def species_old() -> dict[str, str]:
@@ -207,6 +208,10 @@ def manage_figures(types:list[str], records:list[Record], attributes:pd.DataFram
     x = figures.get_codon_table(11)
     for record in records:
         print(record.record_id)
+        # ms(record.seq, record.record_id)
+        # print("^^^^^^^^^",record.seq)
+        # import pdb; pdb.set_trace()
+
         # start_codon = figures.get_start_codon(record.seq, x)
         # record contains list of all the genes
         # #1. get list of the CDS sequences and there start codons
@@ -235,9 +240,11 @@ def manage_figures(types:list[str], records:list[Record], attributes:pd.DataFram
 
 if __name__ == '__main__':
     species_id_and_type = species_updated()
-    viruses_and_hosts = viruses_and_hosts_updated()
+    # viruses_and_hosts = viruses_and_hosts_updated()
     records, attributes = get_records(species_id_and_type)
+    ms( records)
+    # import pdb; pdb.set_trace()
 
-    types = ["Podoviridae", "Myoviridae", "Prochlorococcus", "Synechococcus"]
+    # types = ["Podoviridae", "Myoviridae", "Prochlorococcus", "Synechococcus"]
 
-    manage_figures(types, records, attributes, viruses_and_hosts)
+    # manage_figures(types, records, attributes, viruses_and_hosts)

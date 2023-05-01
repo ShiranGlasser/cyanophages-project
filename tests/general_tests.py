@@ -1,12 +1,5 @@
-NUCLEOTIDE = "nucleotide"
-GENE_BANK_FOLDER = "data\\gb\\"
-FASTA_FOLDER = "data\\fasta\\"
-TRNA_SCAN_FOLDER = "data\\trna_scan\\"
-TRNA_SCAN_CSV_FOLDER = "data\\trna_scan_csv\\"
-MEASURES_FOLDER = "data\\measures\\"
+from measures import*
 
-ENTREZ_EMAIL = "shiranglasser10@gmail.com"
-GENES = ['CDS', 'tmRNA', 'tRNA', 'ncRNA', 'rRNA']
 
 CODON_TABLE = {
     'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
@@ -26,5 +19,10 @@ CODON_TABLE = {
     'TAC': 'Y', 'TAT': 'Y', 'TAA': '_', 'TAG': '_',
     'TGC': 'C', 'TGT': 'C', 'TGA': '_', 'TGG': 'W',
 }
+AMINO_TABLE = {'I': 3, 'M': 1, 'T': 4, 'N': 2, 'K': 2, 'S': 6, 'R': 6, 'L': 6, 'P': 4, 'H': 2,
+               'Q': 2, 'V': 4, 'A': 4, 'D': 2, 'E': 2, 'G': 4, 'F': 2, 'Y': 2, 'END': 3, 'C': 2, 'W': 1}
 
-AMINO_TABLE = {'I': 3, 'M': 1, 'T': 4, 'N': 2, 'K': 2, 'S': 6, 'R': 6, 'L': 6, 'P': 4, 'H': 2, 'Q': 2, 'V': 4, 'A': 4, 'D': 2, 'E': 2, 'G': 4, 'F': 2, 'Y': 2, 'END': 3, 'C': 2, 'W': 1}
+sequence = "ATAATGACAAACAAAAGTAGACTGCCGCATCAAGTGGCTGATGAAGGGTTTTATTGTTGGTAG"
+expected_result = 20
+result = measures.Nk_measure.calculate(sequence, CODON_TABLE, AMINO_TABLE)
+# self.assertEqual(result, expected_result)
