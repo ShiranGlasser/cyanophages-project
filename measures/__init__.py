@@ -1,6 +1,6 @@
-from measures.Nk_measure import calculate as nk_calc
-from measures.TAI_measure import calculate as tai_calc
-from record.constants import MEASURES_FOLDER, CODON_TABLE
+from .Nk_measure import calculate as nk_calc
+from .TAI_measure import calculate as tai_calc
+from .constants import MEASURES_FOLDER, CODON_TABLE
 from parsers.parser import Parser
 import os
 from Bio import Seq
@@ -28,8 +28,8 @@ class Measures:
         measure["all genome"] = self.get_measures(seq)
 
         for gene in genes_dic:
-            # import pdb; pdb.set_trace()
-            measure[gene] = self.get_measures(genes_dic[gene]) #get the measurs results
+
+            measure[gene] = self.get_measures(genes_dic[gene]) # gets the measurs results
 
         measure_path = os.path.join(MEASURES_FOLDER, 'measure_'+ record_id+'.csv')
 
@@ -41,11 +41,13 @@ class Measures:
     def get_measures(self, seq):
         #call the calculating methods for each measure and build a dictionary of the results
         res_dic = {}
-        if not self.check_seq(seq):
+
+        # translated_seq = self.translate_seq(seq)[0]
+        if not self.is_valid_dna(seq):
             print("error with seq {}".format(seq))
             return
-        res_dic["Nk"] = nk_calc(seq, CODON_TABLE)
-        res_dic["TAI"] = tai_calc(seq,CODON_TABLE)
+        res_dic["Nk"] = nk_calc(seq.__str__())
+        res_dic["TAI"] = tai_calc(seq.__str__())
         return res_dic
 
     def get_gene_sequence(self, genome_data):
@@ -62,5 +64,28 @@ class Measures:
         return genes_dic
 
 
+    def translate_seq (self, seq, reading_frame=None):
+        if not self.is_valid_dna(seq):
+            return ""
+        if reading_frame == None:
+            return [self.translate_helper(0, seq), self.translate_helper(1, seq), self.translate_helper(2, seq)]
+        else:
+            return self.translate_helper(reading_frame-1, seq)
+
+    def is_valid_dna(self, seq):
+        str = "ACGTacgt"
+        for i in range(0, len(seq)):
+            if seq[i] not in str:
+                return False
+        return True
+    
+    def translate_helper (self, start_ind, seq):
+        prot = ""
+        stop_ind = len(seq)-(len(seq)-start_ind) % 3
+        for i in range (start_ind, stop_ind, 3):
+            sub_seq = seq[i] + seq[i+1] + seq[i+2]
+            prot += CODON_TABLE[sub_seq]
+        return prot
+    
     def check_seq(self, seq):
         return True

@@ -208,8 +208,8 @@ def manage_figures(types:list[str], records:list[Record], attributes:pd.DataFram
     x = figures.get_codon_table(11)
     for record in records:
         print(record.record_id)
-        # ms(record.seq, record.record_id)
-        # print("^^^^^^^^^",record.seq)
+        ms(record.seq, record.record_id)
+        print("^^^^^^^^^",record.seq)
         # import pdb; pdb.set_trace()
 
         # start_codon = figures.get_start_codon(record.seq, x)
