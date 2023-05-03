@@ -1,0 +1,12 @@
+typing
+pandas
+os
+sys
+logging
+Bio
+collections
+numpy
+matplotlib
+seaborn
+scipy
+math

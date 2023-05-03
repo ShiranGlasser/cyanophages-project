@@ -18,3 +18,17 @@ def get_attributes(keys, record):
         else:
             attributes[key] = ""
     return attributes
+
+def stats_amino_acids(codon_table):
+    dic = {}
+    for elemnt in codon_table:
+        if codon_table[elemnt] in dic.keys():
+            dic[codon_table[elemnt]] = dic[codon_table[elemnt]] + 1
+        elif codon_table[elemnt] == '_':
+            if 'END' in dic.keys():
+                dic['END'] = dic['END'] + 1
+            else:
+                dic['END'] = 1
+        else:
+            dic[codon_table[elemnt]] = 1
+    return dic
