@@ -209,7 +209,6 @@ class Measures:
             os.makedirs(folder)
         df_fin = pd.concat(
             [measure_df[1:], genome_df['gc_percentage'], genome_df['gc_number']], axis=1)
-        # df_fin.corr()
         df_fin = df_fin.dropna()
         X = np.array(df_fin["Nk"].iloc[:-1])
         X = X.reshape(-1, 1)
