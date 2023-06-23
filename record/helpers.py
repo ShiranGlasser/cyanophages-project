@@ -88,7 +88,8 @@ def add_intergenic(genbank_record, i, intergenic_records, last_end, strand, this
 
 
 def get_protein_gc_number(feature, seq):
-    seq = seq[feature.location.start.position: feature.location.end.position]
+    if feature != None:
+        seq = seq[feature.location.start.position: feature.location.end.position]
     counter_g = seq.count('G')
     counter_c = seq.count('C')
     return counter_c + counter_g
