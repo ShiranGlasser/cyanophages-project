@@ -88,7 +88,7 @@ def species() -> dict[str, str]:
 
 
 def species_updated() -> dict[str, str]:
-    #print('Creting species.')
+    print('Creting species.')
     return {
         # "KM034562.1":"KM034562.1",
         # "NC_045512.2": "NC_045512.2", # cororna virus
@@ -207,11 +207,6 @@ def manage_figures(types:list[str], records:list[Record], attributes:pd.DataFram
     figures = Figures()
     x = figures.get_codon_table(11)
     for record in records:
-        print(record.record_id)
-        ms(record.seq, record.record_id)
-        print("^^^^^^^^^",record.seq)
-        # import pdb; pdb.set_trace()
-
         # start_codon = figures.get_start_codon(record.seq, x)
         # record contains list of all the genes
         # #1. get list of the CDS sequences and there start codons
@@ -222,7 +217,6 @@ def manage_figures(types:list[str], records:list[Record], attributes:pd.DataFram
         start_codon_list = record.record_data.loc[record.record_data['type'] == 'CDS', "start_codon"]
         codons = figures.get_frequency_of_codons(cds_list, start_codon_list)
         frequencies[record.record_id] = codons
-
         #figures.show_relative_position(record.record_data, attributes, record.record_family, record.record_id)
 
     mean_and_std_of_types = figures.get_mean_and_std(records, types)
@@ -240,11 +234,9 @@ def manage_figures(types:list[str], records:list[Record], attributes:pd.DataFram
 
 if __name__ == '__main__':
     species_id_and_type = species_updated()
-    # viruses_and_hosts = viruses_and_hosts_updated()
+    viruses_and_hosts = viruses_and_hosts_updated()
     records, attributes = get_records(species_id_and_type)
-    ms( records)
-    # import pdb; pdb.set_trace()
+    ms(records)
 
     # types = ["Podoviridae", "Myoviridae", "Prochlorococcus", "Synechococcus"]
-
     # manage_figures(types, records, attributes, viruses_and_hosts)

@@ -20,3 +20,4 @@ CODON_TABLE = {
 AMINO_TABLE = {'I': 3, 'M': 1, 'T': 4, 'N': 2, 'K': 2, 'S': 6, 'R': 6, 'L': 6, 'P': 4, 'H': 2, 'Q': 2, 'V': 4, 'A': 4, 'D': 2, 'E': 2, 'G': 4, 'F': 2, 'Y': 2, 'END': 3, 'C': 2, 'W': 1}
 
 MEASURES_FOLDER = "data\\measures"
+FIGURES_FOLDER = "figures\\measures"
