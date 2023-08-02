@@ -1,5 +1,21 @@
-How to install: open a terminal in this folder. run the command: pip install -r requirements.txt
+# Usage
+## Cloning The Code On Your Computer 
+- Clone the code to your local environment by pasting this link:
 
-How to run: open a terminal in this folder. rin main.py 
+         yghu
+  into the 'Clone git repository' option on the code editor on your computer.
+  
+## How To Install: 
+- Open a terminal in this folder.
+- run the command:
 
-after this command' the data will be created under the folder 'data' and figure 1 will be shown
+          pip install -r requirements.txt
+
+## How To Run: 
+- Open a terminal in this folder. run main.py 
+
+- After this command' the data will be created under the folder 'data'
+  there will be a folder named 'measures' for the Nc measure csv files.
+- The folder 'figures' will also be created and will contain figure1 from the arctical,
+  and a folder for the measures figures.
+- The Nc calculation results will be presented on screen.
